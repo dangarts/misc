@@ -1,0 +1,63 @@
+SHORT ANSWER
+
+1. Why do programmers use pseudocode? Pseudocode helps programmers brainstorm on projects and helps them develop algorithyms. 
+
+2. If you run pseudocode on your computer what would happen?
+Pseudocode is not a programming language.  It can not run or compile it.
+
+PROGRAMMING ASSIGNMENT
+
+1. Create a function that takes two numbers and prints out the greater number.
+FUNCTION addNumber(Num1, Num2)
+   IF num1 is greater than Num2
+      PRINT "Num1 is the greater number"
+   ELSE
+      PRINT "Num2 is the greater number"
+   END IF
+END FUNCTION
+
+2. Create a function that prints out the numbers from 1 to 100.
+FUNCTION printNumber
+   INIT Number to 1
+   WHILE the Number is less then and equal to 100
+      PRINT Number
+      ADD Number to 1
+   END WHILE
+END FUNCTION
+
+3. Create a function that searches for a specific entry in a phonebook.
+FUNCTION searchPhonebook(Entry, PhoneBookArray)
+   SEARCH PhoneBookArray for Entry
+   STORE results in Results
+END FUNCTION
+
+4. Using the pseudocode you wrote for the previous question, implement it in any computer language of your choice.
+
+
+ONE
+function addNumber(num1, num2){
+   if (num1 >= num2){
+      console.log(num1 + " is the greater number.");
+   } else {
+      console.log(num2 + " is the greater number.");
+   }
+}
+addNumber(4,5);
+
+
+TWO
+function printNumber(){
+   var number = 1;
+   while (number <= 100){
+      console.log(number);
+      number += 1;
+   }
+}
+printNumber();
+
+
+THREE
+function searchPhoneBook(entry, phoneBookArray){
+   var results = phoneBookArray.filter(item => item == entry)
+}
+searchPhoneBook('todd',['jim', 'joe', 'todd']);
