@@ -1,15 +1,14 @@
 EXERCISES
 
 1. In your own words, explain what clean code is and why it is important.
-
 Clean code is a practice of writing code that is maintainable and readable.  This is important because it allows developers to work on each others code/projects.  Clean code is especially important in an agile environment, where any bad code can hinder the progress of a project and can cost employers additional maintenace costs.
 
-2. Read this article about Toyota and their use of bad code. Although you may not yet understand all of the topics discussed, think about another commonly used object that relies on computers and explain what would happen if the code was not created to an acceptable standard.
 
+2. Read this article about Toyota and their use of bad code. Although you may not yet understand all of the topics discussed, think about another commonly used object that relies on computers and explain what would happen if the code was not created to an acceptable standard.
 One example of an object that relies on computer technologies are traffic lights.  If the logic to create the signals were not optimally created, there are potential of inefficienct traffic flow, traffic jams, and may lead to safety issues.
 
-3. Would you consider the following to be clean code? Explain why or why not. If not, refactor the code.
 
+3. Would you consider the following to be clean code? Explain why or why not. If not, refactor the code.
 No, i do not consider this clean code.  Issues I've noticed include:
 
    - No indentation for the IF statements
@@ -17,8 +16,7 @@ No, i do not consider this clean code.  Issues I've noticed include:
    - The over-usage of comments, conveys to me that the code is not "self describing" and that this can be improved by creative descriptive variable names.
    - This function could possible be split into 2 different functions: One that calculates celcius while the other calculates fahrenheit.
 
-Revised psuedo-code below:
-
+// Revised psuedo-code below:
 FUNCTION celciusFahrenheitConversion(degrees, celciusOrFahrenheit)
    IF celciusOrFahrenheit = "F" THEN
       SET Results to (degrees−32) * (5/9)             //convert degrees fahrenheit to celsius
@@ -29,17 +27,128 @@ FUNCTION celciusFahrenheitConversion(degrees, celciusOrFahrenheit)
    END IF
 END FUNCTION
 
+
 4. Would you consider the following to be clean code? Explain why or why not. If not, refactor the code.
+YES, this code is clean.
 
+5. Using pseudocode, refactor the code for the following examples using the principles you have learned in this checkpoint.
 
-```
-FUNCTION calcPercent(sum, total)
- IF NOT(total = 0) THEN
-     SET percentage to sum / total * 100
- ELSE
-   PRINT "Sorry, cannot divide by 0"
- END IF
+a. The following function prints the subtotal of a customer's transaction and receives payment accordingly.
+// Revised Pseudocode
+FUNCTION checkOutCustomer(paymentType)
 
- PRINT percentage
+   PRINT "Your total due is: " + CALL getPayment
+
+   IF paymentType = 'CASH' THEN
+       CALL getPayment RETURNING total
+       PRINT "Change due: " + CALL getPayment
+
+   ELSE IF paymentType = 'CREDIT CARD' THEN
+       CALL getPayment RETURNING total
+       PRINT "Your credit card has been charged: " + CALL getPayment
+   END IF
 END FUNCTION
-```
+
+FUNCTION getPayment (subTotal, discountRate)
+   SET tax to .8
+   SET total to subTotal * discountRate + (subTotal * tax)
+   RETURN total
+END FUNCTION
+
+b. The following function checks out a book if there are no issues with the guest's account.
+// Revised Pseudocode
+FUNCTION checkoutBook(book, guest)
+   IF guest.accountActive equals TRUE AND guest.hasOverdueBooks equals false AND guest.outstandingFees = 0 THEN
+      APPEND book to guest.books
+      SET book.status to "Checked Out"
+      PRINT "Your books have been issued."
+   ELSE
+      PRINT "Unable to check out book."
+   END IF
+END FUNCTION
+
+c. The following class is a code snippet that should support the transactions a customer can perform at an ATM.
+// Revised Pseudocode
+CLASS BankAccount
+
+   FUNCTION displayBalance
+      PRINT balance
+   END FUNCTION
+
+   FUNCTION depositAmount(amount)
+      SET balance to balance + amount
+   END FUNCTION
+
+   FUNCTION withdrawAmount(amount)
+      IF balance > amount THEN
+         SET balance to balance - amount
+      END
+   END FUNCTION
+
+   FUNCTION isCreditCardCustomer
+      IF NOT(customer.hasCreditCard) THEN
+         CALL offerCreditCard
+      END
+   END FUNCTION
+
+   FUNCTION isCheckingCustomer
+      IF NOT(customer.hasCheckingAccount) THEN
+         CALL offerCheckingAccount
+      END
+   END FUNCTION
+   ....
+   ....
+   ....
+END
+
+PROGRAMMING QUESTIONS
+
+6. Square Given an array of integers, find out whether the sum of the integers is a perfect square. If it is a perfect square, return the square root, otherwise return the sum.
+
+var randomNumbers = [10,1,4,6,1,1,2];
+
+//Function accepts an array of integers.  Calculates total of all array elements. Checks if total is a perfect square.
+function checkPerfectSquare(){
+  var total = randomNumbers.reduce((total, amount) => total + amount);
+  var squareRoot = Math.sqrt(total);
+  var perfectInteger = squareRoot % 1; // Perfect square results to 0
+  
+  if (perfectInteger === 0){
+      console.log( "The square root of " + total + " is " + squareRoot);
+  } else {
+    console.log("The square root of " + total + " is not perfect.");
+  }
+}
+checkPerfectSquare();
+
+7. Duplicate Given an array of integers, find out whether the array contains any duplicate elements. The function should return true if any value appears at least twice in the array, and false if every element is distinct.
+
+const randomNumbers = [10,1,4,6,1,1,2];
+
+//Accepts an array.  Checks if any value is a duplicate or if all are unique.
+function checkDuplicates(){
+  
+  let copyRandomNumbers = randomNumbers;
+  let arrayLength = randomNumbers.length;
+  let isDuplicate = false;
+  
+  for (let i = 0; i < arrayLength ; i++) {
+    
+    //mutates array by removing the first element
+    let arrayElementRemoved = copyRandomNumbers.splice(0,1);
+    
+    //stores duplicates in createDuplicatesArray
+    var createDuplicatesArray = copyRandomNumbers.filter(item => item == arrayElementRemoved);
+   
+    if (createDuplicatesArray.length != '') {
+      isDuplicate = true;
+    }
+  }
+  
+  if (isDuplicate == true) {
+    console.log("The array of numbers contains duplicate(s)");
+    } else {
+      console.log("The array of numbers are all unique");
+    }
+} 
+checkDuplicates();
