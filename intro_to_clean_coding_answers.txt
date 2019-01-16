@@ -1,0 +1,45 @@
+EXERCISES
+
+1. In your own words, explain what clean code is and why it is important.
+
+Clean code is a practice of writing code that is maintainable and readable.  This is important because it allows developers to work on each others code/projects.  Clean code is especially important in an agile environment, where any bad code can hinder the progress of a project and can cost employers additional maintenace costs.
+
+2. Read this article about Toyota and their use of bad code. Although you may not yet understand all of the topics discussed, think about another commonly used object that relies on computers and explain what would happen if the code was not created to an acceptable standard.
+
+One example of an object that relies on computer technologies are traffic lights.  If the logic to create the signals were not optimally created, there are potential of inefficienct traffic flow, traffic jams, and may lead to safety issues.
+
+3. Would you consider the following to be clean code? Explain why or why not. If not, refactor the code.
+
+No, i do not consider this clean code.  Issues I've noticed include:
+
+   - No indentation for the IF statements
+   - Function name is not descriptive and doesn't describe what the function does.
+   - The over-usage of comments, conveys to me that the code is not "self describing" and that this can be improved by creative descriptive variable names.
+   - This function could possible be split into 2 different functions: One that calculates celcius while the other calculates fahrenheit.
+
+Revised psuedo-code below:
+
+FUNCTION celciusFahrenheitConversion(degrees, celciusOrFahrenheit)
+   IF celciusOrFahrenheit = "F" THEN
+      SET Results to (degrees−32) * (5/9)             //convert degrees fahrenheit to celsius
+      PRINT Results
+      ELSE IF celciusOrFahrenheit = "C" THEN
+         SET Results to degrees * 1.8000 + 32.00      //convert celsius to fahrenheit
+         PRINT Results
+   END IF
+END FUNCTION
+
+4. Would you consider the following to be clean code? Explain why or why not. If not, refactor the code.
+
+
+```
+FUNCTION calcPercent(sum, total)
+ IF NOT(total = 0) THEN
+     SET percentage to sum / total * 100
+ ELSE
+   PRINT "Sorry, cannot divide by 0"
+ END IF
+
+ PRINT percentage
+END FUNCTION
+```
