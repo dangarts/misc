@@ -29,6 +29,12 @@ END FUNCTION
 FUNCTION searchPhonebook(Entry, PhoneBookArray)
    SEARCH PhoneBookArray for Entry
    STORE results in Results
+
+   IF Results equals 0
+      PRINT "No search results found"
+      ELSE
+         PRINT "Search results found for: " Entry
+   END IF
 END FUNCTION
 
 4. Using the pseudocode you wrote for the previous question, implement it in any computer language of your choice.
@@ -58,6 +64,12 @@ printNumber();
 
 THREE
 function searchPhoneBook(entry, phoneBookArray){
-   var results = phoneBookArray.filter(item => item == entry)
+   var results = phoneBookArray.filter(item => item == entry);
+  
+   if (results.length === 0){
+      console.log('No search results found.');
+   } else {
+      console.log('Search found for: ' + entry);
+   }
 }
 searchPhoneBook('todd',['jim', 'joe', 'todd']);
