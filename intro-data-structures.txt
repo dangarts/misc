@@ -38,9 +38,35 @@ console.log(lineParkRide);
 
 2. Provide another real-world example that you can model using a data structure.
 
-A grocery store's inventory of goods.  
+Sending multiple jobs to a printer is a real world example of a data structure that uses a FIFO queue data structure.  When the first job is completed, the second job can start printing.
+
+  - The queue of print jobs are represented by strings.
+  - There is a first job and an end job.
+  - When a new job is added, it is added at the end.
+  - Print jobs may be canceled and the following print job takes place of the canceled job.
 
 3. How would your data structure allow developers to access and manipulate the data?
 
-- Low inventory can alert the store to order more items.
-- Excess inventory can be discounted or transferred to another store
+Example Queue Data Strucuture:
+  
+  let printJobs = [word.doc, image.png, index.html, notes.txt];
+
+Adding jobs to the queue:
+  
+  printJobs.push('screenshot.jpg');
+
+Detecting if a job is available.
+
+  let findPrintJob = "index.html";
+  let detectJob = printJobs.indexOf(findPrintJob);
+
+  if (detectJob == -1) {
+    console.log(detectJob + " is not available.");
+  } else {
+    console.log(detectJob + " is in queue at position " + (detectJob + 1));
+  }
+
+Deleting a print job.
+
+  printJobs.splice(2, 1);
+  // detects index of 2 and removes that item - index.html
