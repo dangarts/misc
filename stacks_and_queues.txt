@@ -4,14 +4,13 @@ Exercises
 Stack uses LIFO approach while queue uses FIFO.
 
 2. What are the similarities between stacks and queues?
-They are both data structures.  There is an input and an output of data elements.
+
+Stacks and queues are both linear data structures that rely on arrays to add, remove, and/or modify data elements.  They both have priority elements that are processed(whether if its FIFO or LIFO) upon during the input and output(reverse order) of data elements; allowing access to one element at a time.
 
 3. Imagine you are an engineer tasked with implementing the UNDO and REDO options in a word processor such as Microsoft Word. Which data structure would you use for each option and why?
 
 - UNDO: Stack (LIFO)
 - REDO: Stack (LIFO)
-
-
 
 
 PROGRAMMING QUESTIONS
@@ -55,101 +54,123 @@ reverse("test");
 2. Implement the pop method of a stack using one queue. Make a FIFO data structure mirror the functionality of a LIFO data structure. Since the internal list is not the same as defined in the checkpoint, it may help to rewrite the pseudocode first.
 
 //pseudocode
-FUNCTION REVERSE(original)
-  INIT a new stack
-  FOR each character in original
-    CALL stack.push WITH character
-  END FOR
-  INIT reversed to empty string
-  WHILE stack is not empty
-    CALL stack.shift RETURNING character
-    APPEND character to reversed
-  END WHILE
-  RETURN reversed
-END FUNCTION
+CLASS queue
+  INIT a new list
+  FUNCTION enqueue(element)
+    APPEND element to the end of the list
+  END FUNCTION
+  FUNCTION dequeue
+    SET temp to the first element
+    REMOVE FIRST element of list from list
+    RETURN temp
+  END FUNCTION
+END CLASS
+
+SET original to "Test"
+SET reverseQueue to NEW array
+FOR each character in the original
+  CALL enqueue WITH character
+END FOR
+WHILE stack is not empty
+  CALL dequeue RETURNING character
+  SET RETURNED character to returnedElement
+  APPEND character to reverseQueue
+END WHILE
 
 //Javascript implementation
-function reverse(original){
-  
-  // Create stack
-  var stack = [];
-  for (let i = original.length - 1 ; i >= 0 ; i--){
-    stack.push(original[i]);
-    console.log(stack);
-  }
-  
-  //Reverse stack
-  var reverseStack = [];
-  for (let i = 0 ; i < original.length ; i++){
-    var temp = stack.shift();
-    reverseStack += temp;
-  }
-  console.log(reverseStack); 
-}
-reverse("test");
+class Queue { 
+    constructor() { 
+      this.list = []; 
+    } 
+    
+    enqueue(element) {     
+      this.list.push(element); 
+      //console.log(this.list);
+    }
 
+    dequeue() {
+      let temp = this.list.shift();
+      return temp;
+    } 
+} 
+
+var queue = new Queue(); 
+let original = "test";
+let reverseQueue = [];
+let returnedElement;
+
+for ( let i = 0 ; i < original.length ; i++) {
+  queue.enqueue(original[i]);
+}
+
+while (queue.list.length !== 0){
+  returnedElement = queue.dequeue();
+  reverseQueue.unshift(returnedElement);
+  //console.log(returnedElement);
+}
+console.log(reverseQueue);
 
 To delete an item, take all of the elements in the queue one at a time and put them at the end of the queue, except for the last one which should be removed and returned.
 
 1. Implement the enqueue and dequeue methods defined in the checkpoint inside your own Queue class.
 
 //pseudocode
-FUNCTION REVERSE(original)
-   INIT a new stack
-   CALL FUNCTION enqueue(stack, original)
-   INIT reverseStack to empty string
-   CALL FUNCTION dequeue(stack, original, reverseStack)
-   RETURN reversed
-END FUNCTION
+CLASS queue
+  INIT a new list
+  FUNCTION enqueue(element)
+    APPEND element to the end of the list
+  END FUNCTION
+  FUNCTION dequeue
+    SET temp to the first element
+    REMOVE FIRST element of list from list
+    RETURN temp
+  END FUNCTION
+END CLASS
 
-FUNCTION enqueue(stack, original)
-   FOR each character in original
-      IF last element of original 
-         RETURN
-      END IF
-      APPEND character to the end of the stack
-   END FOR
-END FUNCTION
-
-FUNCTION dequeue(stack, original, reverseStack)
-   WHILE stack is not empty
-      SET temp to the first character
-      REMOVE FIRST character of stack from stack
-   END WHILE
-END FUNCTION
+SET original to "Test"
+SET reverseQueue to NEW array
+FOR each character in the original
+  IF element IS NOT the last array element
+    CALL enqueue WITH character
+  END IF
+END FOR
+WHILE stack is not empty
+  CALL dequeue RETURNING character
+  SET RETURNED character to returnedElement
+  APPEND character to reverseQueue
+END WHILE
 
 //Javascript implementation
-function reverse(original){
-  
-  // Create stack
-  var stack = [];
-  enqueue(stack, original);
-  
-  //Reverse stack 
-  var reverseStack = [];
-  dequeue(stack, original, reverseStack);
-}
-
-// Creates stack by adding character to an array
-function enqueue(stack, original){
-  for (let i = 0 ; i < original.length ; i++){
-    if (i == original.length - 1){
-      return;
-    }
+class Queue { 
+    constructor() { 
+      this.list = []; 
+    } 
     
-    stack.push(original[i]);
-    console.log(stack); 
+    enqueue(element) {
+        this.list.push(element); 
+        //console.log(element);
+    }
+
+    dequeue() {
+      let temp = this.list.shift();
+      return temp;
+    } 
+} 
+
+var queue = new Queue(); 
+let original = "test";
+let reverseQueue = [];
+let returnedElement;
+
+for ( let i = 0 ; i < original.length ; i++) {
+  if(i !== original.length - 1){
+    queue.enqueue(original[i], i);
   }
 }
 
-// Unstacks the array by removing the first element
-function dequeue(stack, original, reverseStack){
-  let stackLength = stack.length;
-  for (let i = 0 ; i < stackLength ; i++){
-    stack.shift();
-    console.log(stack);
-  }
-  
+while (queue.list.length !== 0){
+  returnedElement = queue.dequeue();
+  reverseQueue.unshift(returnedElement);
+  //console.log(returnedElement);
 }
-
-reverse("test");
+console.log(reverseQueue);
