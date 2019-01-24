@@ -18,22 +18,65 @@ lineParkRide.indexOf("Josh")
 
 // d) Find a person in line named "Emily." What should your function return if it does not find the item in the array?
 
-let personName = "Emily"
-let findPerson = lineParkRide.indexOf(personName);
-
-if (findPerson == -1) {
-  console.log(personName + " is not in line.");
-} else {
-  console.log(personName + " is in line at position " + (findPerson + 1));
+function findPerson(person) {
+  let isInLine = false;
+  let linePosition;
+  
+  for (let i = 0; i < lineParkRide.length; i++){
+    //console.log(lineParkRide[i]);
+    if(person === lineParkRide[i]){
+      isInLine = true;
+      linePosition = i + 1;
+    }
+  }
+  
+  if (isInLine){
+      console.log(person + " is in line at position " + linePosition);
+    } else {
+      console.log(person + " is not in line.")
+    }
 }
+findPerson("Emily");
 
 // .e) What if Ava wants to allow a friend, "Melissa", to cut in line in front of her? How would you code this so Melissa appears before Ava?
-lineParkRide.splice(1, 0, "Melissa");
+
+function cutInLine(findPerson, newPerson){
+  let isInline = false;
+  let setIndex;
+    for (let i = 0; i < lineParkRide.length; i++){
+        if(findPerson == lineParkRide[i]) {
+          isInLine = true;
+          setIndex = i;
+        }
+    }
+    if (isInLine){
+      lineParkRide.splice(setIndex, 0, newPerson);
+      console.log(lineParkRide);
+    } else {
+      console.log(findPerson + " is not in line.");
+    }
+}
+cutInLine("Ava", "Melissa");
 
 //f) If Patrick wants to leave the line, how would you delete him from the array?
-lineParkRide.splice(4, 1);
 
-console.log(lineParkRide);
+function leaveLine(findPerson){
+  let isInline = false;
+  let setIndex;
+    for (let i = 0; i < lineParkRide.length; i++){
+        if(findPerson == lineParkRide[i]) {
+          isInLine = true;
+          setIndex = i;
+        }
+    }
+    if (isInLine){
+      lineParkRide.splice(setIndex, 1);
+      console.log(lineParkRide);
+    } else {
+      console.log(findPerson + " is not in line.");
+    }
+}
+leaveLine("Patrick");
 
 
 2. Provide another real-world example that you can model using a data structure.
