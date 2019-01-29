@@ -1,0 +1,164 @@
+EXERCICES
+
+1. What are some pros and cons of using linked lists instead of arrays?
+
+PROS:
+   - Each node within a linked list data struuture is independent in memory.
+   - The size is dynamic
+   - An operating system may use any available memory location to store it
+   - Due to the node memory's independence, link lists can be very large when compared to an array data strucutures.
+   - Overflow never occurs unless memory is full
+   - Insertion and deletions are easier when compared to arrays
+
+CONS:
+   - Linked lists can be inefficient to access an alement as each node may exist anywhere in physical memory
+   - Elements must be access in order as it does not hold an index like an array data structure
+   - Access to data elements must be traversed from the head node; this leads to longer retrieval time.
+   - Require more memory for storage
+
+2. Come up with a real world example of a linked list.
+
+A real word example is the "back and forward button" used in browsers.  A history of every page(node) is stored and is fetched when using the navigational buttons.  
+   - The initial visited page is where the HEAD starts
+   - When navigating to a new page, a new node is created and pushed(incremented) with a reference link to the previous(initial HEAD) node.
+
+PROGRAMMING QUESTIONS
+
+1. The linked list push function should take a value, create a node, and add it to the end of a list. Below is pseudocode for a push function for a singly linked list. However, there is something wrong with it. Submit both an explanation of the bug and a functional implementation of the method.
+
+FUNCTION push(element)
+   CREATE node
+   SET node.value TO element
+   SET node.next TO null
+
+   IF the head node does not exist 
+         THEN SET head to node 
+      ELSE
+         SET current to head
+
+         WHILE current.next is true
+            SET current.next to node
+         END WHILE
+   END IF
+
+   SET current.next to node
+END FUNCTION
+
+// In the else statement, an iteration while loop needs to occur if there are multiple nodes to hop through.  This allows a node to be pushed to the end of the link.
+// A node class needs to be created for each instance it is initialized
+// The head needs to be declared first before it is set.  This is done within the linkedlist class.
+
+class Node {
+   constructor(element) {
+      this.element = element;
+      this.next = null;
+   }
+}
+
+class LinkedList {
+   constructor() {
+      this.head = null;
+      this.size = 0;
+   }
+
+   push(element) 
+   { 
+      var node = new Node(element); 
+      var current; 
+   
+      if (this.head == null) 
+         this.head = node;
+      else { 
+         current = this.head;
+         while (current.next) { 
+               current = current.next;
+         } 
+         current.next = node;
+      } 
+      this.size++; //1
+   } 
+}
+var ll = new LinkedList();
+
+ll.push("10");
+ll.push("20");
+ll.push("30");
+console.log(ll);
+
+2. Given an unsorted singly linked list, remove all duplicates from the linked list.
+
+FUNCTION push(element)
+   CREATE node
+   SET node.value TO element
+   SET node.next TO null
+
+   IF the head node does not exist 
+         THEN SET head to node 
+
+
+      ELSE
+         SET current to head
+
+         WHILE current.next is true
+            IF CURRENT.ELEMENT == NODE.ELEMENT
+               RETURN
+            ELSE
+               SET current.next to node
+            END IF ELSE
+         END WHILE
+   END IF
+
+   SET current.next to node
+END FUNCTION
+
+class Node {
+   constructor(element) {
+      this.element = element;
+      this.next = null;
+   }
+}
+class LinkedList {
+   constructor() {
+      this.head = null;
+      this.size = 0;
+   }
+   push(element) 
+   { 
+      var node = new Node(element); 
+      var current; 
+   
+      if (this.head == null) {
+         this.head = node;
+      } else { 
+         current = this.head;
+         while (current.next) {
+
+            if (current.element == node.element){
+               //console.log("hi " + current.element + " " + node.element);
+               return;
+            } 
+            else {
+               current = current.next;
+            }
+         }
+         current.next = node;  
+      } 
+      this.size++;
+   } 
+}
+var linkListOne = new LinkedList();
+
+linkListOne.push("1");
+linkListOne.push("2");
+linkListOne.push("3");
+linkListOne.push("4");
+linkListOne.push("5");
+linkListOne.push("1");
+linkListOne.push("7");
+linkListOne.push("8");
+linkListOne.push("9");
+linkListOne.push("2");
+console.log(linkListOne);
+
+3. Given an unsorted singly linked list, reverse it.
+
