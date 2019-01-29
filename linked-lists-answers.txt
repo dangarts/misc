@@ -87,6 +87,7 @@ console.log(ll);
 
 2. Given an unsorted singly linked list, remove all duplicates from the linked list.
 
+//psuedocode
 FUNCTION push(element)
    CREATE node
    SET node.value TO element
@@ -111,6 +112,7 @@ FUNCTION push(element)
    SET current.next to node
 END FUNCTION
 
+//javascript implementation
 class Node {
    constructor(element) {
       this.element = element;
@@ -162,3 +164,74 @@ console.log(linkListOne);
 
 3. Given an unsorted singly linked list, reverse it.
 
+//psuedocode
+FUNCTION reverse
+   SET current to this.head
+   set PREV to null
+
+   WHILE (current)
+      SET next to current.next
+      SET current.next to prev
+      SET prev to current
+      SET current to next
+   END WHILE
+
+   RETUREN prev;
+END FUNCTION
+
+//javascript implementation
+class Node {
+   constructor(element) {
+      this.element = element;
+      this.next = null;
+   }
+}
+class LinkedList {
+   constructor() {
+      this.head = null;
+      this.size = 0;
+   }
+   push(element) { 
+      let node = new Node(element); 
+      let current; 
+   
+      if (this.head == null) {
+         this.head = node;
+      } else { 
+         current = this.head;
+         while (current.next) {
+            if (current.element == node.element){
+               return;
+            } 
+            else {
+               current = current.next;
+            }
+         }
+         current.next = node;  
+      } 
+      this.size++;
+   } 
+
+   reverse() {
+      let current = this.head;
+      let prev = null;
+      while (current) {
+        let next = current.next;
+        current.next = prev;
+        prev = current;
+        current = next;
+      }
+      return prev;
+    }
+}
+
+let list = new LinkedList();
+
+list.push("1");
+list.push("2");
+list.push("3");
+list.push("4");
+list.push("2");
+list.push("5");
+//console.log(list);
+console.log(list.reverse());
