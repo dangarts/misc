@@ -181,48 +181,48 @@ END FUNCTION
 
 //javascript implementation
 class Node {
-   constructor(element) {
-      this.element = element;
-      this.next = null;
-   }
+  constructor(element) {
+     this.element = element;
+     this.next = null;
+  }
 }
 class LinkedList {
-   constructor() {
-      this.head = null;
-      this.size = 0;
-   }
-   push(element) { 
-      let node = new Node(element); 
-      let current; 
-   
-      if (this.head == null) {
-         this.head = node;
-      } else { 
-         current = this.head;
-         while (current.next) {
-            if (current.element == node.element){
-               return;
-            } 
-            else {
-               current = current.next;
-            }
-         }
-         current.next = node;  
-      } 
-      this.size++;
-   } 
+  constructor() {
+     this.head = null;
+     this.size = 0;
+  }
+  push(element) { 
+     let node = new Node(element); 
+     let current; 
+  
+     if (this.head == null) {
+        this.head = node;
+     } else { 
+        current = this.head;
+        while (current.next) {
+          //  if (current.element == node.element){
+          //     return;
+          //  } 
+          //  else {
+              current = current.next;
+          //  }
+        }
+        current.next = node;  
+     } 
+     this.size++;
+  } 
 
-   reverse() {
-      let current = this.head;
-      let prev = null;
-      while (current) {
-        let next = current.next;
-        current.next = prev;
-        prev = current;
-        current = next;
-      }
-      return prev;
-    }
+  reverse() {
+     let current = this.head;
+     let prev = null;
+     while (current) {
+       let next = current.next;
+       current.next = prev;
+       prev = current;
+       current = next;
+     }
+     return prev;
+   }
 }
 
 let list = new LinkedList();
