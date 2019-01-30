@@ -61,7 +61,7 @@ CLASS queue
   END FUNCTION
   FUNCTION dequeue
     SET temp to the first element
-    REMOVE FIRST element of list from list
+    REMOVE last element of list from list
     RETURN temp
   END FUNCTION
 END CLASS
@@ -74,24 +74,24 @@ END FOR
 WHILE stack is not empty
   CALL dequeue RETURNING character
   SET RETURNED character to returnedElement
-  APPEND character to reverseQueue
+  PUSH character to reverseQueue
 END WHILE
 
 //Javascript implementation
+//Javascript implementation
 class Queue { 
-    constructor() { 
-      this.list = []; 
-    } 
-    
-    enqueue(element) {     
-      this.list.push(element); 
-      //console.log(this.list);
-    }
+   constructor() { 
+     this.list = []; 
+   } 
+   
+   enqueue(element) {     
+     this.list.push(element); //+++>
+   }
 
-    dequeue() {
-      let temp = this.list.shift();
-      return temp;
-    } 
+   dequeue() {
+     let temp = this.list.pop();//--->
+     return temp;
+   } 
 } 
 
 var queue = new Queue(); 
@@ -100,14 +100,14 @@ let reverseQueue = [];
 let returnedElement;
 
 for ( let i = 0 ; i < original.length ; i++) {
-  queue.enqueue(original[i]);
+ queue.enqueue(original[i]);
 }
 
 while (queue.list.length !== 0){
-  returnedElement = queue.dequeue();
-  reverseQueue.unshift(returnedElement);
-  //console.log(returnedElement);
+ returnedElement = queue.dequeue();
+ reverseQueue.push(returnedElement);
 }
+
 console.log(reverseQueue);
 
 To delete an item, take all of the elements in the queue one at a time and put them at the end of the queue, except for the last one which should be removed and returned.
