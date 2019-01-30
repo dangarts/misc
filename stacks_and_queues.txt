@@ -78,7 +78,6 @@ WHILE stack is not empty
 END WHILE
 
 //Javascript implementation
-//Javascript implementation
 class Queue { 
    constructor() { 
      this.list = []; 
@@ -142,19 +141,18 @@ END WHILE
 
 //Javascript implementation
 class Queue { 
-    constructor() { 
-      this.list = []; 
-    } 
-    
-    enqueue(element) {
-        this.list.push(element); 
-        //console.log(element);
-    }
+  constructor() { 
+    this.list = []; 
+  } 
+  
+  enqueue(element) {
+      this.list.push(element); 
+  }
 
-    dequeue() {
-      let temp = this.list.shift();
-      return temp;
-    } 
+  dequeue() {
+    let temp = this.list.shift();
+    return temp;
+  } 
 } 
 
 var queue = new Queue(); 
@@ -162,8 +160,13 @@ let original = "test";
 let reverseQueue = [];
 let returnedElement;
 
+let lastElement = original.slice(-1); //returns the last element
+original = original.slice(0, original.length-1);//omits the last element from the 
+
+console.log(lastElement);
+
 for ( let i = 0 ; i < original.length ; i++) {
-  if(i !== original.length - 1){
+  if(i !== original.length){
     queue.enqueue(original[i], i);
   }
 }
@@ -171,6 +174,5 @@ for ( let i = 0 ; i < original.length ; i++) {
 while (queue.list.length !== 0){
   returnedElement = queue.dequeue();
   reverseQueue.unshift(returnedElement);
-  //console.log(returnedElement);
 }
 console.log(reverseQueue);
