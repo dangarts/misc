@@ -1,28 +1,218 @@
 EXERCISES
 
-1. What is a hash table?
-// Hash table is a type of data structure that stores each value by linking it to a key, forming key-value pairs, just like JavaScript objects.  Each key is unique which allows retrieval.  
+////// 1. What is a hash table?
+Hash table is a type of data structure that stores each value by linking it to a key, forming key-value pairs, just like JavaScript objects.  Each key is unique which allows retrieval.  
 
-2. What is hashing?
+////// 2. What is hashing?
+A process of converting arbitrary data into a fixed-length hash code using a hashing algorithym.
+
+////// 3. How does a hash table store data?
+A key is converted to a hash code using a hashing function.  That hash code is modded to get an array index.  The value(s) for that key is then stored in that array index.
+
+////// 4. How are hash tables and objects different?
+Hash tables are storing values in a created array for quick data retrieval via index loopup while objects can contain different types of grouped data.  Objects can be stored in a hashtable 
+
+////// 5. Determine whether you would use a hash table or an object to store each of the following pieces of data:
+
+   /// - A list of pets and their unique names.
+   Hash Table
+
+   /// - The name, age, and the birthday of your best friend.
+   Object
+
+   /// - The name and location of every company in a given city.
+   Hash Table
+
+   /// - All of the books checked out from a library by a particular individual.
+   Hash Table
+
+   /// - The primary and secondary phone numbers for a contact.
+   Object
+
+////// 6. Build a system that allows a sales associate to enter a customer's name, address, and phone number into the system and look up customers using their phone numbers. Store this information in a hash table.
+
+class HashTable {
+  constructor(){
+    this.storage = [];
+    this.capacity = 10;
+  };
+  
+  addCustomer(name, address, phone) {
+    let index = hashCode(phone, this.capacity);
+
+    if (this.storage[index] === undefined) {
+      this.storage[index] = [[name, address, phone]];
+    } else {
+      this.storage[index].push([name, address, phone]);
+    }
+  };
+
+  callStorage(){
+    return this.storage;
+  };
+
+  customerLookup(phone){
+    let index = hashCode(phone, this.capacity);
+
+    for (let i = 0 ; i < this.storage[index].length ; i++) {
+      if (phone == this.storage[index][i][2]){
+        for (let j = 0; j < this.storage[index][i].length ; j++ ) {
+          console.log("   " + this.storage[index][i][j]);
+        }
+      }
+    }
+  };
+};
+
+let hashCode = (phone, capacity) => {
+  let hash = 0;
+  for (let i = 0; i < phone.length; i++) {
+    hash += phone.charCodeAt(i);
+  }
+  return hash % capacity;
+};
+
+let hashTest = new HashTable();
+hashTest.addCustomer('joe', '1 N. Arizona St.', '4809840987');
+hashTest.addCustomer('tim', '2 N. Arizona St.', '6021231234');
+hashTest.addCustomer('jan', '3 N. Arizona St.', '4803454564');
+hashTest.addCustomer('jim', '4 N. Arizona St.', '4800980988');
+hashTest.addCustomer('tom', '5 N. Arizona St.', '6029879876');
+hashTest.addCustomer('kim', '6 N. Arizona St.', '6028768765');
+hashTest.addCustomer('abe', '7 N. Arizona St.', '4807657654');
+hashTest.addCustomer('val', '8 N. Arizona St.', '6021233455');
+hashTest.addCustomer('jen', '9 N. Arizona St.', '6022342344');
+hashTest.addCustomer('jon', '10 N. Arizona St.', '6021267904');
+hashTest.addCustomer('kat', '11 N. Arizona St.', '4808393938');
+
+console.log(hashTest.callStorage());
+hashTest.customerLookup('4808393938');
 
 
+////// 7. Build a system that allows a store owner to track their store's inventory using a hash table for storage.
 
-3. How does a hash table store data?
+class HashTable {
+  constructor(){
+    this.storage = [];
+    this.capacity = 10;
+  };
+  
+  addItem(name, stock) {
+    let index = hashCode(name, this.capacity);
 
+    if (this.storage[index] === undefined) {
+      this.storage[index] = [[name, stock]];
+    } else {
+      this.storage[index].push([name, stock]);
+    }
+  };
 
+  callStorage(){
+    return this.storage;
+  };
 
-4. How are hash tables and objects different?
+  inventoryLookup(name){
+    let index = hashCode(name, this.capacity);
 
+    for (let i = 0 ; i < this.storage[index].length ; i++) {
+      if (name == this.storage[index][i][0]){
+        console.log('Inventory lookup: ');
+        for (let j = 0; j < this.storage[index][i].length ; j++ ) {
+          console.log("   " + this.storage[index][i][j]);
+        }
+      }
+    }
+  };
+};
 
+let hashCode = (name, capacity) => {
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash += name.charCodeAt(i);
+  }
+  return hash % capacity;
+};
 
-5. Determine whether you would use a hash table or an object to store each of the following pieces of data:
-   - A list of pets and their unique names.
+let hashTest = new HashTable();
+hashTest.addItem('hammer', '21');
+hashTest.addItem('nails', '230');
+hashTest.addItem('ladders', '4');
+hashTest.addItem('wheel barrels', '3');
+hashTest.addItem('trash cans', '16');
+hashTest.addItem('toilets', '7');
+hashTest.addItem('sinks', '0');
+hashTest.addItem('lawn mowers', '6');
+hashTest.addItem('hoses', '12');
+hashTest.addItem('screw drivers', '6');
+hashTest.addItem('power drills', '7');
 
-   - The name, age, and the birthday of your best friend.
+console.log(hashTest.callStorage());
+hashTest.inventoryLookup('hammer');
 
-   - The name and location of every company in a given city.
+////// 8. Build a system that allows digital copies of newspapers to be entered and searched by publisher and publication date. Use hash tables to store the necessary data.
 
-   - All of the books checked out from a library by a particular individual.
+class HashTable {
+  constructor(){
+    this.storage = [];
+    this.capacity = 10;
+    this.isAvailable = false;
+  };
+  
+  addItem(publisher, date, content) {
+    let index = hashCode(publisher, date, this.capacity);
 
-   - The primary and secondary phone numbers for a contact.
+    if (this.storage[index] === undefined) {
+      this.storage[index] = [[publisher, date, content]];
+    } else {
+      this.storage[index].push([publisher, date, content]);
+    }
+  };
 
+  callStorage(){
+    return this.storage;
+  };
+
+  articleLookUp(publisher, date){
+    let index = hashCode(publisher, date, this.capacity);
+
+    for (let i = 0 ; i < this.storage[index].length ; i++) {
+      if (publisher == this.storage[index][i][0] && date == this.storage[index][i][1]){
+        this.isAvailable = true;
+        console.log('Inventory lookup: ');
+        for (let j = 0; j < this.storage[index][i].length ; j++ ) {
+          console.log("   " + this.storage[index][i][j]);
+        }
+      }
+    }
+    if (!this.isAvailable){
+      console.log('0 results for \"' + publisher + '\" and \"' + date + '\". Please try a new article and/or date search.');
+    }
+
+  };
+};
+
+let hashCode = (publisher, date, capacity) => {
+  let hash = 0;
+  let combinePubDate = publisher + date;
+
+  for (let i = 0; i < combinePubDate.length; i++) {
+    hash += combinePubDate.charCodeAt(i);
+  }
+  return hash % capacity;
+};
+
+let hashTest = new HashTable();
+hashTest.addItem('NBC News', '2018','Digital content...');
+hashTest.addItem('New York Times', '2001','Digital content...');
+hashTest.addItem('CNN', '2015','Digital content...');
+hashTest.addItem('Huffington Post', '2010','Digital content...');
+hashTest.addItem('Fox News', '2005','Digital content...');
+hashTest.addItem('Yahoo!', '2004','Digital content...');
+hashTest.addItem('Mail Online', '2016','Digital content...');
+hashTest.addItem('Washington Post', '2017','Digital content...');
+hashTest.addItem('The Guardian', '2012','Digital content...');
+hashTest.addItem('WSJ', '2018','Digital content...');
+hashTest.addItem('ABC News', '2006','Digital content...');
+
+console.log(hashTest.callStorage());
+hashTest.articleLookUp('WSJ', '2018');
