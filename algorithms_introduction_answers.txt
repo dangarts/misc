@@ -1,0 +1,84 @@
+EXERCISES
+
+////// 1. Using proper pseudo-code, describe the following primitive algorithms:
+
+// Making coffee;
+SET coffeeMaker to off
+SET kCupQuantity to 7
+FUNCTION brewCoffee()
+   SET cup to 'empty'
+   SET coffeeMaker to 'on'
+   SET coffeeMakerWater to 'full'
+   IF kCupQuantity = 0
+      PRINT "Sorry, no coffee until you buy more K-Cups"
+      RETURN
+   END IF
+   SET cup to 'cupReady'
+   SET coffeeMaker to 'pour'
+   WHILE (cup == !full)
+      //time delay
+   END WHILE
+   PRINT "coffee is ready!"
+   kCupQuantity = kCupQuantity - 1;
+END FUNCTION
+CALL brewCoffee();
+
+// Washing dishes;
+SET dirtyObjects[] to dirty
+FUNCTION washDishes()
+   WHILE (dirtyObjects[] > 0)
+      SET drain to 'covered'
+      SET water-faucet to 'on'
+      SET water to 'soapy'
+      SET dirty-object to 'scrubbing'
+      SET dirty-object to 'cleaned'
+      REMOVE dirtyObject[x] from array
+      SET dirtyObjects to dirtyObjects - 1
+   END IF
+   SET drain to uncovered
+   SET water-faucet to off
+END FUNCTION
+
+// A choice of your own. 
+// Smoking Ribs
+FUNCTION smokeRibs
+   SET ribs to "seasoned"
+   SET smoker to 'empty'
+   SET coals to 'heated'
+   SET coals to 'inSmoker'
+   SET smokerTemp to 0
+   SET smokeTime to 5 hours
+   SET woodChips
+
+   WHILE (smokerTemp < 350)
+      //wait
+   END WHILE
+
+   ADD woodChips to 'coals'
+   SET ribs to 'smoking'
+   
+   WHILE (smokeTime > 0)
+      SET timer to decrease from smokeTime
+   END WHILE 
+
+   SET ribs to "ready"
+END FUNCTION
+
+////// 2. As with the knot algorithm, there may be more than one way to solve the problem. It is essential to try to pick the best algorithm for a situation. Name three companies who created an algorithm that made them successful, e.g., Google's search algorithm. It doesn't need to be a tech example (such as a recipe or manufacturing a product). Google's algorithm produces more relevant results than other search engines; what about each of your cases make them stand out?
+
+Apple: I believe Apple has several algorthms that has carried them to one of the most successful companies today.    
+   - They create simple and aesthetically pleasing devices.  All products conveys a premium quality. 
+   - Branding: Although simple, is effective and there products are recognizable from a distance.
+   - The ecosystem is very strong between all of the devices.  This stems from flexible and powerful software which is regularly updated.
+
+Coke: There algorthm of there soda recipe has made this beverage company the most popular globally.  With several products in there production line, they have all sorts of data on consumer preference and taste.  This information can help them create new algorthms for future products.
+
+Youtube: There are several features within this site that uses algorythms.  More specifically the "recommended" section.  This section is based on past search history and videos that are liked.  I'm sure there are other factors, but they have found a way to get users to continue binge watching videos.
+
+////// 3. Hypothesize about what constitutes an efficient algorithm versus an inefficient algorithm.
+
+Time: An efficient algorthm is faster then one that is inefficient.  Time is prestious to the end-user which is why this is important.  Time is also dependent on memory management.
+
+Memory Management: Efficiency in this area is critical because not only will this effect time, it will also determine server cost and the resources that are demanded from it.
+
+An efficient algorithm can also be determined on how it is written.  Is it self-documenting?  Are there documentations for its process?  Is it scalable?  Can it be improved on or do we need to reinvent the wheel.
