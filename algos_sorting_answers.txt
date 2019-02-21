@@ -1,0 +1,58 @@
+EXERCISES
+
+////// 1. Write pseudocode for bubble sort.
+This pseudocode for bubble sort has already been provided in this checkpoint.
+FUNCTION bubbleSort(collection)
+   REPEAT
+     SET swapped to false
+     FOR i = FIRST INDEX of collection to LAST INDEX of collection - 1
+       IF collection[i] > collection[i + 1] THEN
+         SET tmp to collection[i]
+         SET collection[i] to collection[i + 1]
+         SET collection[i + 1] to tmp
+         SET swapped to true
+       END IF
+     END FOR
+   UNTIL swapped is FALSE
+   RETURN collection
+ END FUNCTION
+
+
+////// 2. Write pseudocode for quicksort.
+FUNCTION quicksort(collection)
+   IF collection length <= 1 THEN
+     RETURN collection
+   ELSE
+      SET pivot to LAST INDEX of collection
+      FOR i = FIRST INDEX of collection to LAST INDEX of collection - 1
+         IF collection[i] > pivot
+            SET tmp to collection[i]
+            REMOVE collection[i] from collection
+            PUSH tmp to collection // moves item to right of the pivot
+         END IF
+      END FOR
+      CALL quicksort WITH FIRST INDEX to pivot RETURNING left
+      CALL quicksort WITH pivot to LAST INDEX element RETURNING right
+      CALL merge WITH left AND right RETURNING the new collection
+   END IF
+END FUNCTION
+
+
+////// 3. We talked about time complexity in a previous checkpoint, and how to get an idea of the efficiency of an algorithm. After looking at the pseudocode for the above sorting methods, identify why merge sort and quick sort are much more efficient than the others. Walking through each algorithm with a few sample collections may help.
+
+INSERTION SORT - O(n^2) - Quadratic growth Rate
+SELECTION SORT - Θ(n^2) - Quadratic growth Rate
+BUBBLE SORT - Θ(n^2) - Quadratic growth Rate
+MERGE SORT - Θ(n log(n)) - Log-Linear Growth Rate
+QUICK SORT - Θ(n log(n)) - Log-Linear Growth Rate
+
+Merge and quick sort is much faster and more efficient then insertion/selection/bubble sort as its main method of sorting is dividing collections of data into smaller chunks for further sorting.  In the end, these chunks of data can be efficiently merged.  
+
+Insertion/selection/bubble sort does not chunk up data for sorting.  They iteratively cycle the entire collection array for comparing and swapping/inserting.  This linear process, although logically easier to comprehend, is  inefficient and taxing on system resources.  These sorts are categorizes as having a quadratic growth rate where merge/quick sort are categorized as having a log-linear growth rate.  From the chart comparisons, insertion/selection/bubble sorts, grow dramatically as the collection size grows.  Merge/quick log linear growth is relative to the the size of the collection data and closely resembles a linear [O(n)] growth pattern.
+
+
+////// 4. All of the sorts addressed in this checkpoint are known as comparison sorts. Research bucket sort and explain how it works. What is the ideal input for bucket sort?
+
+Bucket sort works by distributing elements of a collection into a number of smaller buckets.  Each bucket is then sorted individually, whether using a different sorting algorithm or by recursively applying the the bucket sorting algorithm.
+
+An ideal input for bucket sort is when a range of data is uniformly distributed accross the collection.
